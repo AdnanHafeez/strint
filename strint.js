@@ -48,24 +48,27 @@ define(function () {
         var leadingZeros = 0;
         for (var i=0; i<maxLength; i++) {
             var lhs = Number(getDigit(x, i));
-            console.log(`lhs = ${lhs}`);
             var rhs = Number(getDigit(y, i));
-            console.log(`rhs = ${rhs}`);
             var digit = lhs + rhs + borrow;
+            console.log(`The resulting digit = ${digit}`);
             borrow = 0;
             while (digit >= 10) {
+              //console.log(`Digit greather than 10 found`)
                 digit -= 10;
                 borrow++;
             }
+            //console.log(`Result = ${result}`);
+            //console.log(`borrow = ${borrow}`);
             if (digit === 0) {
                 leadingZeros++;
             } else {
                 result = String(digit) + prefixZeros(result, leadingZeros);
+                //console.log(`The result string = ${result}`);
                 leadingZeros = 0;
             }
         }
         if (borrow > 0) {
-            result = String(borrow) + result;
+            result = String(borrow) + prefixZeros(result, leadingZeros);
         }
         return result;
     }
@@ -125,7 +128,7 @@ define(function () {
             }
         }
         if (carry > 0) {
-            result = String(carry) + result;
+            result = String(carry) + prefixZeros(result, leadingZeros);
         }
         return result.length === 0 ? "0" : result;
     }
