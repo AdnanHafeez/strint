@@ -3,7 +3,7 @@
 if (typeof define !== 'function') { var define = require('amdefine')(module) }
 
 define(function () {
-    
+
     var e = {};
 
     //------------------- Addition
@@ -48,7 +48,9 @@ define(function () {
         var leadingZeros = 0;
         for (var i=0; i<maxLength; i++) {
             var lhs = Number(getDigit(x, i));
+            console.log(`lhs = ${lhs}`);
             var rhs = Number(getDigit(y, i));
+            console.log(`rhs = ${rhs}`);
             var digit = lhs + rhs + borrow;
             borrow = 0;
             while (digit >= 10) {
@@ -146,7 +148,7 @@ define(function () {
         forcePositiveString(rhs);
         var result = "0";
         var digitCount = getDigitCount(rhs);
-        for(var i=0; i<digitCount; i++) {
+        for(var i=0; i < digitCount; i++) {
             var singleRow = mulDigit(lhs, Number(getDigit(rhs, i)));
             singleRow = shiftLeft(singleRow, i);
             result = addPositive(result, singleRow);
