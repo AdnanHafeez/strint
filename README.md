@@ -30,5 +30,3 @@ Compare:
 
     > 9007199254740992 + 1
     9007199254740992
-# Look at the issues from the original master branch.
-# Will be looking make this a production quality code along with adding bitwise operations as well.
