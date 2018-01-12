@@ -81,6 +81,8 @@ define(function () {
     var add = e.add = function (x, y) {
         forceString(x);
         forceString(y);
+        stringHasValidValues(x);
+        stringHasValidValues(y);
 
         if (isPositive(x) && isPositive(y)) {
             return addPositive(x, y);
@@ -107,6 +109,8 @@ define(function () {
     var sub = e.sub = function (x, y) {
         forceString(x);
         forceString(y);
+        stringHasValidValues(x);
+        stringHasValidValues(y);
         return add(x, negate(y));
     }
 
@@ -168,6 +172,8 @@ define(function () {
     var mul = e.mul = function (lhs, rhs) {
         forceString(lhs);
         forceString(rhs);
+        stringHasValidValues(lhs);
+        stringHasValidValues(rhs);
 
         var absResult = mulPositive(abs(lhs), abs(rhs));
         return (sameSign(lhs, rhs) ? absResult : negate(absResult));
@@ -232,6 +238,8 @@ define(function () {
     };
 
     var div = e.div = function (dividend, divisor) {
+        stringHasValidValues(dividend);
+        stringHasValidValues(divisor);
         forceString(dividend);
         forceString(divisor);
 
@@ -244,6 +252,8 @@ define(function () {
 
     // Function to calculate mod for a given value
     var mod = e.mod = function(divident, divisor){
+      stringHasValidValues(divident);
+      stringHasValidValues(divisor);
       var divisor = divident - (div(divident,divisor) * divisor);
       return divisor;
     }
@@ -413,6 +423,18 @@ define(function () {
         if (typeof value !== type) {
             throw new Error("Not a "+type+": "+value);
         }
+    }
+
+    // Added a function to test whether the given string only contains the valid integer values
+    function stringHasValidValues(str){
+      //Regular expression for checking if the string has all valid integer values
+      if(str === '') return;
+      var regExp = /^(\+?|\-?)\d+$/;
+      //console.log("String = " + str);
+      if(!regExp.test(str)){
+        throw new Error(`Value ${str} contains invalid integer values`);
+      }
+
     }
 
     //-------------------

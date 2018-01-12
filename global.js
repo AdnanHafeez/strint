@@ -3,5 +3,10 @@ var strint = require('./strint.js');
 
 
 
-
-console.log(strint.mod("-1500","13"));
+try{
+console.log(strint.mul("-1000","13d"));
+}
+catch (e)
+{
+  console.log(e);
+}
