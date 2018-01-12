@@ -4,4 +4,4 @@ var strint = require('./strint.js');
 
 
 
-console.log(strint.mul("5","210"));
+console.log(strint.mod("-1500","13"));

@@ -1,3 +1,9 @@
+//TODO
+// Add checks to make sure that input is a valid string of integers
+// Add bitwise operations
+// Maybe add support for floating point operations
+
+
 "use strict";
 
 if (typeof define !== 'function') { var define = require('amdefine')(module) }
@@ -50,7 +56,7 @@ define(function () {
             var lhs = Number(getDigit(x, i));
             var rhs = Number(getDigit(y, i));
             var digit = lhs + rhs + borrow;
-            console.log(`The resulting digit = ${digit}`);
+            //console.log(`The resulting digit = ${digit}`);
             borrow = 0;
             while (digit >= 10) {
               //console.log(`Digit greather than 10 found`)
@@ -234,6 +240,13 @@ define(function () {
     }
 
     //------------------- Comparisons
+
+
+    // Function to calculate mod for a given value
+    var mod = e.mod = function(divident, divisor){
+      var divisor = divident - (div(divident,divisor) * divisor);
+      return divisor;
+    }
 
     var eq = e.eq = function (lhs, rhs) {
         return normalize(lhs) === normalize(rhs);
