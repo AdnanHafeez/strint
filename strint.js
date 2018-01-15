@@ -258,6 +258,29 @@ define(function () {
       return divisor;
     }
 
+
+    // Function to calculate the power of the given values
+    var pwr = e.pwr = function(base,exponent){
+      stringHasValidValues(base);
+      stringHasValidValues(exponent);
+      if(lt(exponent,"0")) {
+        throw new Error(`Cannot do floating point arithematic. Please enter positive exponent`);
+      }
+      if(exponent === "0") return "1";
+      if(exponent === "1") return base;
+
+      var result = (isPositive(base)) ? base : mul(base,"-1");
+        for(var i = 1; lt(i+"",exponent); i++){
+          result = mul(result+"", base+"");
+          //console.log(`Result = ${result}`);
+        }
+
+      if(isPositive(base)) return result;
+      else if(mod(mul("-1",base,),"2") === 0) return result;
+      else {
+        return mul(result,"-1");
+      }
+    }
     var eq = e.eq = function (lhs, rhs) {
         return normalize(lhs) === normalize(rhs);
     }
